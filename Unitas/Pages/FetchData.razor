@@ -20,17 +20,19 @@ else
                 <th>Temp. (C)</th>
                 <th>Temp. (F)</th>
                 <th>Summary</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var forecast in forecasts)
             {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
+             <tr>
+                 <td>@forecast.Date.ToShortDateString()</td>
+                 <td>@forecast.TemperatureC</td>
+                 <td>@forecast.TemperatureF</td>
+                 <td>@forecast.Summary</td>
+                 <td><button class="favorite styled" type="button">Edit</button></td>
+             </tr>
             }
         </tbody>
     </table>
@@ -39,8 +41,6 @@ else
 @code {
     private WeatherForecast[] forecasts;
 
-    protected override async Task OnInitializedAsync()
-    {
+    protected override async Task OnInitializedAsync() =>  
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    }
 }

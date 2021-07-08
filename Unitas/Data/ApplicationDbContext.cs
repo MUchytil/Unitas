@@ -12,6 +12,9 @@ namespace Unitas.Data
             : base(options)
         {
         }
+        /// <summary>
+        /// used for accessing all available addresses.
+        /// </summary>
         public DbSet<Address> Addresses { get; set; }
     }
 }

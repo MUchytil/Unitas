@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;  
 using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +17,7 @@ namespace Unitas.Areas.Identity
     {
         private readonly IServiceScopeFactory _scopeFactory;
         private readonly IdentityOptions _options;
-
+        
         public RevalidatingIdentityAuthenticationStateProvider(
             ILoggerFactory loggerFactory,
             IServiceScopeFactory scopeFactory,
@@ -27,7 +27,7 @@ namespace Unitas.Areas.Identity
             _scopeFactory = scopeFactory;
             _options = optionsAccessor.Value;
         }
-
+        
         protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(30);
 
         protected override async Task<bool> ValidateAuthenticationStateAsync(

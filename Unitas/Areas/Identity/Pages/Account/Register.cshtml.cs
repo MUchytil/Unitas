@@ -62,7 +62,7 @@ namespace Unitas.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
-            //[Range(DateTime.Now.AddYears(-100), DateTime.Now, ErrorMessage = "Age must be between 0 and 199 years")]
+            //[Range(typeof(DateTime), DateTime.Now.AddYears(-100), DateTime.Now, ErrorMessage = "Age must be between 0 and 199 years")]
             [Display(Name = "Date of Birth")]
             public DateTime DOB { get; set; }
 
@@ -74,6 +74,7 @@ namespace Unitas.Areas.Identity.Pages.Account
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
+            // validate password is the same. 
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
         }
@@ -93,7 +94,7 @@ namespace Unitas.Areas.Identity.Pages.Account
                 var user = new ApplicationUser { 
                     FirstName = Input.FirstName,
                     LastName  = Input.LastName,
-                    DOB  = Input.DOB,
+                    DOB       = Input.DOB,
                     UserName  = Input.Email,
                     Email     = Input.Email
                 };
