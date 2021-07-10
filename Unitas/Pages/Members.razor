@@ -1,0 +1,58 @@
+﻿@page "/members"
+
+@using Unitas.Data
+
+
+@inject ApplicationDbContext appDbContext
+<AuthorizeView>
+
+    <NotAuthorized>
+        <h1>Unauthorized user</h1>
+        <p>Please login before viewing users</p>
+
+    </NotAuthorized>
+    <Authorized>
+        <h1>Membership database</h1>
+        <p>This component demonstrates fetching data from a service.</p>
+
+        @if (users == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone number</th>
+                        <th>Council</th>
+                        <th>City</th>
+                        <th>State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in users) {
+                        <tr>
+                            <td>@user.FullName</td>
+                            <td><a href="mailto:@user.Email"><div style="height: 100%; width: 100%">@user.Email</div></a></td>
+                            <td><a href="tel:@user.PhoneNumber"><div style="height: 100%; width: 100%">@user.PhoneNumber</div></a></td>
+                            <td>@user.CouncilMembership?.CouncilNumber</td>
+                            <td>@user.Address?.City</td>
+                            <td>@user.Address?.State</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </Authorized>
+</AuthorizeView>
+
+@code {
+
+    List<ApplicationUser> users => appDbContext.Users.ToList();
+    
+}
+
+

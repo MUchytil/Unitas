@@ -1,6 +1,8 @@
-﻿<AuthorizeView>
+﻿@using Unitas.Data;
+@inject ApplicationDbContext appDbContext
+<AuthorizeView>
     <Authorized>
-        <a href="Identity/Account/Manage">Hello, @context.User.Identity.Name!</a>
+        <a href="Identity/Account/Manage">Hello, @GetUser(context.User.Identity.Name).FirstName!</a>
         <form method="post" action="Identity/Account/LogOut">
             <button type="submit" class="nav-link btn btn-link">Log out</button>
         </form>
@@ -14,3 +16,7 @@
         </NavLink>
     </NotAuthorized>
 </AuthorizeView>
+
+@code{
+    public ApplicationUser GetUser(string id) => appDbContext.Users.ToList().Where(x => id == x.Email).Single();
+}

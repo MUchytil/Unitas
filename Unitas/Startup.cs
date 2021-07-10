@@ -28,7 +28,6 @@ namespace Unitas
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -40,7 +39,7 @@ namespace Unitas
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ApplicationUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddSingleton<WeatherForecastService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,7 +74,10 @@ namespace Unitas
                 endpoints.MapFallbackToPage("/_Host");
             });
         }
-
+        /// <summary>
+        ///  This allows you to automatically update the database, allowing users to not have to manually set it up.
+        /// </summary>
+        /// <param name="app"></param>
         private static void UpdateDatabase(IApplicationBuilder app)
         {
 

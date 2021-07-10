@@ -32,5 +32,20 @@ namespace Unitas.Data
         [PersonalData]
         public Address Address { get; set; }
 
+        public Council CouncilMembership { get; set; }
+
+        public ApplicationUser() { }
+        public ApplicationUser(string firstName, string lastName, string email, DateTime dob, Address address, Council membership) {
+            FirstName = firstName;
+            LastName = lastName;
+            UserName = email;
+            Email = email;
+            DOB = dob;
+            Address = address;
+            CouncilMembership = membership;
+        }
+
+        public string FullName => $"{FirstName} {LastName}";
+        public int Age => DateTime.Now.Year - DOB.Year;
     }
 }

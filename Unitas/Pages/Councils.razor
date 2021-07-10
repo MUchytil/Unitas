@@ -1,0 +1,54 @@
+﻿@page "/councils"
+
+@using Unitas.Data
+
+
+@inject ApplicationDbContext appDbContext
+
+<h1>Council database</h1>
+<p>Feel free to browse through the list of all councils </p>
+
+@if (councils == null)
+{
+<p><em>Loading...</em></p>
+}
+else
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>Council #</th>
+            <th>Name</th>
+            <th>Phone number</th>
+            <th>City</th>
+            <th>State</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var council in councils) {
+        <tr>
+            <td>@council.CouncilNumber</td>
+            <td>@council.CouncilName</td>
+            <td><a href="tel:@council.PhoneNumber"><div style="height: 100%; width: 100%">@council.PhoneNumber</div></a></td>
+            <td>@council.Address?.City</td>
+            <td>@council.Address?.State</td>
+            <td><button @onclick="JoinCouncil">Join!</button></td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+
+
+@code {
+
+    List<Council> councils => appDbContext.Councils.ToList();
+
+    public void JoinCouncil() { 
+
+    } 
+        
+    }
+
+

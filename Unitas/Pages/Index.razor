@@ -1,5 +1,6 @@
 ﻿@page "/"
 
+    
 <div>
 
     <h1>Welcome !</h1>
@@ -14,5 +15,8 @@
     </div>
 
 </div>
+@if (appDbContext.Councils.Count() < 4 || appDbContext.Users.Count() < 10 ) { 
+    var x = seedData(); 
+}
 
 

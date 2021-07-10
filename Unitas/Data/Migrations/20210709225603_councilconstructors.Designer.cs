@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Unitas.Data;
 
 namespace Unitas.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210709225603_councilconstructors")]
+    partial class councilconstructors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,43 +184,6 @@ namespace Unitas.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Addresses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = -930,
-                            City = "Houston ",
-                            State = "TX",
-                            Zipcode = 0
-                        },
-                        new
-                        {
-                            Id = -699,
-                            City = "Green Bay",
-                            State = "WI",
-                            Zipcode = 0
-                        },
-                        new
-                        {
-                            Id = -34,
-                            City = "Hortonville",
-                            State = "WI",
-                            Zipcode = 0
-                        },
-                        new
-                        {
-                            Id = -23,
-                            City = "Greenville",
-                            State = "WI",
-                            Zipcode = 0
-                        },
-                        new
-                        {
-                            Id = -799,
-                            City = "Appleton",
-                            State = "WI",
-                            Zipcode = 0
-                        });
                 });
 
             modelBuilder.Entity("Unitas.Data.ApplicationUser", b =>
